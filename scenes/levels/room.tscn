@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://dda66geujljs1"]
+
+[ext_resource type="PackedScene" uid="uid://wmaabf42alme" path="res://scenes/actors/player.tscn" id="1_hyv2i"]
+[ext_resource type="Texture2D" uid="uid://dxhtcskl3sfy7" path="res://icon.svg" id="1_wehbm"]
+
+[node name="Room" type="Node2D" unique_id=2002948721]
+
+[node name="Icon" type="Sprite2D" parent="." unique_id=1041324925]
+position = Vector2(152, 65)
+scale = Vector2(0.59375, 0.5078125)
+texture = ExtResource("1_wehbm")
+
+[node name="Player" parent="." unique_id=803334380 instance=ExtResource("1_hyv2i")]
+position = Vector2(152, 68)
+
+[node name="Camera2D" type="Camera2D" parent="Player" unique_id=274465138]
+zoom = Vector2(3.145, 3.145)
+position_smoothing_enabled = true
