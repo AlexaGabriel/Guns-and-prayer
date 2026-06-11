@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://wmaabf42alme"]
 
 [ext_resource type="Texture2D" uid="uid://b76qw0gic06w" path="res://assets/Sprites/Padre-walk.png" id="1_15tap"]
-[ext_resource type="Script" uid="uid://nhsmwfb2no0c" path="res://scripts/actors/player.gd" id="1_ru62r"]
+[ext_resource type="Script" uid="uid://xpv1bbsdqfy5" path="res://scripts/actors/player.gd" id="1_ru62r"]
 [ext_resource type="Texture2D" uid="uid://d1myp4agqy62f" path="res://assets/Sprites/Padre-idle.png" id="2_ktjr4"]
 [ext_resource type="Texture2D" uid="uid://bt26p3tf7uxrj" path="res://assets/Sprites/Padre-idle-back.png" id="3_7860b"]
 [ext_resource type="Texture2D" uid="uid://dn0ln0llqmmhq" path="res://assets/Sprites/Padre-walk-side.png" id="4_7wueq"]
