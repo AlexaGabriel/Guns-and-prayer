@@ -122,14 +122,14 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_1ff8e")
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/MarginContainer/PanelContainer/HBoxContainer" unique_id=1853618221]
+[node name="IconeRose" type="TextureRect" parent="CanvasLayer/MarginContainer/PanelContainer/HBoxContainer" unique_id=1853618221]
 material = SubResource("CanvasItemMaterial_o1xp3")
 layout_mode = 2
 texture = ExtResource("6_osop4")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/MarginContainer/PanelContainer/HBoxContainer" unique_id=263639365]
+[node name="IconePistola" type="TextureRect" parent="CanvasLayer/MarginContainer/PanelContainer/HBoxContainer" unique_id=263639365]
 layout_mode = 2
 texture = ExtResource("7_4qac8")
 expand_mode = 3
