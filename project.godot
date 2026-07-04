@@ -11,8 +11,8 @@ config_version=5
 [application]
 
 config/name="guns-and-prayer"
-run/main_scene="uid://dda66geujljs1"
-config/features=PackedStringArray("4.6", "Mobile")
+run/main_scene="uid://cgnutng2mh5i5"
+config/features=PackedStringArray("4.7", "Mobile")
 config/icon="res://icon.svg"
 
 [display]
