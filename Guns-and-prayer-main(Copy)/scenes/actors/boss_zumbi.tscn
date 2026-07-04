@@ -1,0 +1,136 @@
+[gd_scene format=3 uid="uid://dqstjhwjajy5a"]
+
+[ext_resource type="Texture2D" uid="uid://cl3vqxgyaieor" path="res://13_zumbi_boss_frente.png" id="1_c6hy7"]
+[ext_resource type="Texture2D" uid="uid://cukj8nyrkxoti" path="res://14_zumbi_boss_costas.png" id="1_onkwq"]
+[ext_resource type="Script" uid="uid://cbylyif7c403g" path="res://boss_zumbi.gd" id="1_qhuc3"]
+[ext_resource type="Texture2D" uid="uid://cmatmxk4hrfy8" path="res://18_zumbi_boss_frente_ataque.png" id="2_2xcvx"]
+[ext_resource type="Texture2D" uid="uid://dmk4qm4cqpnf1" path="res://20_zumbi_boss_costas_ataque.png" id="2_4odlq"]
+[ext_resource type="Texture2D" uid="uid://buds5f86guuam" path="res://19_zumbi_boss_costas_andando.png" id="2_7xbt5"]
+[ext_resource type="Texture2D" uid="uid://btq6ji44y6ddb" path="res://21_zumbi_boss_esquerda_andando.png" id="3_hjofi"]
+[ext_resource type="Texture2D" uid="uid://b0arnilu6kyu8" path="res://16_zumbi_boss_direita.png" id="3_x00sj"]
+[ext_resource type="Texture2D" uid="uid://dhi63xclk3ddq" path="res://17_zumbi_boss_frente_andando.png" id="4_1ppv4"]
+[ext_resource type="Texture2D" uid="uid://bclo2dpt0m560" path="res://15_zumbi_boss_esquerda.png" id="5_23wqt"]
+[ext_resource type="Texture2D" uid="uid://qt7yuqqo8l58" path="res://22_zumbi_boss_esquerda_ataque.png" id="6_7xbt5"]
+[ext_resource type="Texture2D" uid="uid://cr7srv6qhe2dp" path="res://23_zumbi_boss_direita_andando.png" id="6_qhuc3"]
+[ext_resource type="Texture2D" uid="uid://ba6prpy36tw56" path="res://24_zumbi_boss_direita_ataque.png" id="11_3ab7g"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xrivr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_onkwq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_7xbt5")
+}],
+"loop": 1,
+"name": &"AndandoCostas",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_x00sj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_qhuc3")
+}],
+"loop": 1,
+"name": &"AndandoDireita",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_23wqt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_hjofi")
+}],
+"loop": 1,
+"name": &"AndandoEsquerda",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_c6hy7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_1ppv4")
+}],
+"loop": 1,
+"name": &"AndandoFrente",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_hjofi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_7xbt5")
+}],
+"loop": 1,
+"name": &"Bater de Direita",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_x00sj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_3ab7g")
+}],
+"loop": 1,
+"name": &"Bater de Esquerda ",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_c6hy7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_2xcvx")
+}],
+"loop": 1,
+"name": &"Bater de Frente",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_onkwq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_4odlq")
+}],
+"loop": 1,
+"name": &"BaterCostas",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7xbt5"]
+size = Vector2(16, 35.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1ppv4"]
+size = Vector2(16, 33)
+
+[node name="Boss Zumbi" type="CharacterBody2D" unique_id=314859489]
+position = Vector2(315, 167)
+script = ExtResource("1_qhuc3")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1828176502]
+position = Vector2(-35.500004, -46.25)
+scale = Vector2(0.3854166, 0.28515625)
+sprite_frames = SubResource("SpriteFrames_xrivr")
+animation = &"AndandoCostas"
+frame_progress = 0.38984478
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=52459763]
+position = Vector2(-36, -45.75)
+shape = SubResource("RectangleShape2D_7xbt5")
+
+[node name="Hitbox" type="Area2D" parent="." unique_id=347995085]
+position = Vector2(-15, -19)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=1417974753]
+position = Vector2(-21, -27.5)
+shape = SubResource("RectangleShape2D_1ppv4")
+
+[node name="AttackTimer" type="Timer" parent="." unique_id=1334522453]
