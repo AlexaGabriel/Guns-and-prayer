@@ -1,0 +1,136 @@
+[gd_scene format=4]
+
+[ext_resource type="Script" path="res://scripts/actors/boss_zumbi.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://assets/Sprites/13_zumbi_boss_frente.png" id="1_frente"]
+[ext_resource type="Texture2D" path="res://assets/Sprites/14_zumbi_boss_costas.png" id="2_costas"]
+[ext_resource type="Texture2D" path="res://assets/Sprites/15_zumbi_boss_esquerda.png" id="3_esquerda"]
+[ext_resource type="Texture2D" path="res://assets/Sprites/16_zumbi_boss_direita.png" id="4_direita"]
+[ext_resource type="Texture2D" path="res://assets/Sprites/17_zumbi_boss_frente_andando.png" id="5_frente_andando"]
+[ext_resource type="Texture2D" path="res://assets/Sprites/18_zumbi_boss_frente_ataque.png" id="6_frente_ataque"]
+[ext_resource type="Texture2D" path="res://assets/Sprites/19_zumbi_boss_costas_andando.png" id="7_costas_andando"]
+[ext_resource type="Texture2D" path="res://assets/Sprites/20_zumbi_boss_costas_ataque.png" id="8_costas_ataque"]
+[ext_resource type="Texture2D" path="res://assets/Sprites/21_zumbi_boss_esquerda_andando.png" id="9_esquerda_andando"]
+[ext_resource type="Texture2D" path="res://assets/Sprites/22_zumbi_boss_esquerda_ataque.png" id="10_esquerda_ataque"]
+[ext_resource type="Texture2D" path="res://assets/Sprites/23_zumbi_boss_direita_andando.png" id="11_direita_andando"]
+[ext_resource type="Texture2D" path="res://assets/Sprites/24_zumbi_boss_direita_ataque.png" id="12_direita_ataque"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_boss"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_costas")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_costas_andando")
+}],
+"loop": true,
+"name": &"AndandoCostas",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_direita")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_direita_andando")
+}],
+"loop": true,
+"name": &"AndandoDireita",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_esquerda")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_esquerda_andando")
+}],
+"loop": true,
+"name": &"AndandoEsquerda",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_frente")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_frente_andando")
+}],
+"loop": true,
+"name": &"AndandoFrente",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_direita")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_direita_ataque")
+}],
+"loop": true,
+"name": &"Bater de Direita",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_esquerda")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_esquerda_ataque")
+}],
+"loop": true,
+"name": &"Bater de Esquerda",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_frente")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_frente_ataque")
+}],
+"loop": true,
+"name": &"Bater de Frente",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_costas")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_costas_ataque")
+}],
+"loop": true,
+"name": &"BaterCostas",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_body"]
+size = Vector2(16, 35.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hitbox"]
+size = Vector2(16, 33)
+
+[node name="BossZumbi" type="CharacterBody2D"]
+script = ExtResource("1_script")
+collision_layer = 2
+collision_mask = 1
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-35.5, -46.25)
+scale = Vector2(0.385, 0.285)
+sprite_frames = SubResource("SpriteFrames_boss")
+animation = &"AndandoFrente"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-36, -45.75)
+shape = SubResource("RectangleShape2D_body")
+
+[node name="Hitbox" type="Area2D" parent="."]
+position = Vector2(-15, -19)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(-21, -27.5)
+shape = SubResource("RectangleShape2D_hitbox")
+
+[node name="AttackTimer" type="Timer" parent="."]

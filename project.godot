@@ -10,10 +10,14 @@ config_version=5
 
 [application]
 
-nano project.godotconfig/name="guns-and-prayer"
 run/main_scene="uid://cgnutng2mh5i5"
 config/features=PackedStringArray("4.7", "Mobile")
 config/icon="res://icon.svg"
+nanoproject.godotconfig/name="guns-and-prayer"
+
+[autoload]
+
+HUD="*res://scripts/hud_global.gd"
 
 [display]
 

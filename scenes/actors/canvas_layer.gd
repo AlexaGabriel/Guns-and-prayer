@@ -1,17 +1,35 @@
 extends CanvasLayer
 
-@onready var label_municao = $MarginContainer/PanelContainer/HBoxContainer/Label
-@onready var icone_pistola = $MarginContainer/PanelContainer/HBoxContainer/IconePistola
-@onready var icone_rose = $MarginContainer/PanelContainer/HBoxContainer/IconeRose
+@onready var _vida_container: HBoxContainer = $PanelContainer/VBoxContainer/VidaContainer
+@onready var _arma_label: Label = $PanelContainer/VBoxContainer/ArmaLabel
+@onready var _municao_label: Label = $PanelContainer/VBoxContainer/MunicaoLabel
 
-func atualizar_municao(atual: int, maxima: int):
-	label_municao.text = str(atual) + "/" + str(maxima)
+func atualizar_vida(atual: int, _maxima: int) -> void:
+	if not _vida_container:
+		return
+	for child in _vida_container.get_children():
+		child.queue_free()
+	for i in range(atual):
+		var heart = Label.new()
+		heart.text = "♥"
+		heart.add_theme_font_size_override("font_size", 14)
+		heart.add_theme_color_override("font_color", Color(1, 0.2, 0.2, 1))
+		_vida_container.add_child(heart)
 
-func atualizar_icones(arma_ativa: String):
-	# Deixa a arma ativa brilhante (1.0) e a inativa transparente (0.3)
-	if arma_ativa == "pistola":
-		icone_pistola.modulate = Color(1, 1, 1, 1)
-		icone_rose.modulate = Color(1, 1, 1, 0.3)
+func atualizar_arma(nome: String, atual: int, maxima: int) -> void:
+	if not _arma_label or not _municao_label:
+		return
+	if nome == "":
+		_arma_label.text = "Sem arma"
+		_municao_label.text = ""
+		_municao_label.visible = false
+		_arma_label.visible = true
+		return
+	_arma_label.visible = true
+	_municao_label.visible = true
+	var nome_exibicao = "Pistola" if nome == "pistola" else "Rosario"
+	if atual <= 0:
+		_arma_label.text = nome_exibicao + " (SEM MUNICAO)"
 	else:
-		icone_pistola.modulate = Color(1, 1, 1, 0.3)
-		icone_rose.modulate = Color(1, 1, 1, 1)
+		_arma_label.text = nome_exibicao
+	_municao_label.text = str(atual) + " / " + str(maxima)

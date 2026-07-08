@@ -16,6 +16,7 @@ var current_health: int
 var _player: CharacterBody2D = null
 var _can_attack: bool = true
 var _is_dead: bool = false
+var _is_staggered: bool = false
 var _last_direction: Vector2 = Vector2(0, 1)
 
 signal died
@@ -32,7 +33,7 @@ func _ready() -> void:
 	_hit_timer.timeout.connect(_on_hit_timer_timeout)
 
 func _physics_process(_delta: float) -> void:
-	if _is_dead:
+	if _is_dead or _is_staggered:
 		return
 	if _player == null:
 		_play_idle_animation()
@@ -71,13 +72,22 @@ func take_damage(amount: int) -> void:
 		_die()
 	else:
 		_flash_damage()
+		_start_stagger()
+
+func _start_stagger() -> void:
+	_is_staggered = true
+	velocity = Vector2.ZERO
+	await get_tree().create_timer(0.15).timeout
+	if is_instance_valid(self):
+		_is_staggered = false
 
 func _die() -> void:
 	_is_dead = true
 	velocity = Vector2.ZERO
 	set_physics_process(false)
 	emit_signal("died")
-	if _animated_sprite.sprite_frames != null and _animated_sprite.sprite_frames.has_animation("death"):
+	var death = _animated_sprite.sprite_frames
+	if death != null and death.has_animation("death") and death.get_frame_count("death") > 0:
 		_animated_sprite.play("death")
 		await _animated_sprite.animation_finished
 	queue_free()

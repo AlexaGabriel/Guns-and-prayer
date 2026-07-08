@@ -1,12 +1,21 @@
-[gd_scene format=3 uid="uid://cw1342864cjpf"]
+[gd_scene format=4]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_xrxaf"]
+[ext_resource type="Script" path="res://scripts/projetil.gd" id="1_script"]
 
-[node name="Projetil" type="Node2D" unique_id=152225405]
+[sub_resource type="CircleShape2D" id="CircleShape2D_bullet"]
+radius = 3.0
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=763693362]
+[node name="Projetil" type="Node2D"]
+script = ExtResource("1_script")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=440772178]
-shape = SubResource("CircleShape2D_xrxaf")
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 3
 
-[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=859507269]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_bullet")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_body_entered"]
